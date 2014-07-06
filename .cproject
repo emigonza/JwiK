@@ -27,16 +27,24 @@
 							<builder buildPath="${workspace_loc:/JwiK-VM}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.1359347581" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.release.1327271147" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.release">
 								<option id="de.innot.avreclipse.assembler.option.debug.level.1937086447" name="Generate Debugging Info" superClass="de.innot.avreclipse.assembler.option.debug.level" value="de.innot.avreclipse.assembler.option.debug.level.none" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.asm.option.include.paths.179854406" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avr-libc/common}&quot;"/>
+								</option>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.1261147679" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.release.1701970576" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.release">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.1982230264" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level" value="de.innot.avreclipse.compiler.option.debug.level.none" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.40340549" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.size" valueType="enumerated"/>
 								<option id="de.innot.avreclipse.compiler.option.incpath.179996823" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino/avr-libc/common}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino/avr-libc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avr-libc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avrlib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avr-libc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avr-libc/include/avr}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avrlib/conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avrlib/net/conf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK/platform/arduino/avr-libc/common}&quot;"/>
 								</option>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.329704127" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>
@@ -59,6 +67,9 @@
 							<tool id="de.innot.avreclipse.tool.avrdude.app.release.1376358933" name="AVRDude" superClass="de.innot.avreclipse.tool.avrdude.app.release"/>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

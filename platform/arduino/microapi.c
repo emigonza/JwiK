@@ -267,9 +267,9 @@ void WriteSPI(uint8_t reg, uint8_t value)
 	spi_send_byte(value);
 
 }
-
+/*
 void WriteSPIMultiple (uint8_t count, uint8_t reg,  VARIABLE_SEGMENT_POINTER(buffer, uint8_t, SEG_XDATA))
 {
 
 }
-
+*/
