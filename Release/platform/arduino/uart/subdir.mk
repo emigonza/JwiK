@@ -20,7 +20,7 @@ C_DEPS += \
 platform/arduino/uart/%.o: ../platform/arduino/uart/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: AVR Compiler'
-	avr-gcc -I"/home/opt/Java/workspaceJwiK/JwiK-VM" -I"/home/opt/Java/workspaceJwiK/JwiK-VM/platform/arduino" -I"/home/opt/Java/workspaceJwiK/JwiK-VM/platform/arduino/uart" -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -c -o "$@" "$<"
+	avr-gcc -I"/home/opt/Java/workspaceJwiK/JwiK" -I"/home/opt/Java/workspaceJwiK/JwiK/platform/arduino" -I"/home/opt/Java/workspaceJwiK/JwiK/platform/arduino/uart" -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega328p -DF_CPU=16000000UL -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -c -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
