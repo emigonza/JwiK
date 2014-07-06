@@ -34,7 +34,7 @@
 #ifndef PLATFORM_TYPES_H
 #define PLATFORM_TYPES_H
 #include <stdint.h>
-//#include "compiler_defs.h"
+#include "arduino_defs.h"
 
 #ifndef NULL
 #define NULL ((void*)0)
@@ -50,15 +50,34 @@ typedef char BOOL;
 
 typedef uint16_t PTR;
 
-#ifdef SDCC
-#define code __code
-#define   __ 
-#define uint8_t __bit
-#define reentrant __reentrant
-#endif
-
-
 #define PGMPTR uint8_t *
-#define PGMMEM code
+#define PGMMEM uint8_t *
+
+//Arduino PINS
+/*
+#define SS   10;
+#define MOSI 11;
+#define MISO 12;
+#define SCK  13;
+
+#define SDA  18;
+#define SCL  19;
+#define LED_BUILTIN  13;
+
+#define A0   14;
+#define A1   15;
+#define A2   16;
+#define A3   17;
+#define A4   18;
+#define A5   19;
+#define A6   20;
+#define A7   21;
+
+#define digitalPinHasPWM(p) ((p) == 3 || (p) == 5 || (p) == 6 || (p) == 9 || (p) == 10 || (p) == 11)
+#define digitalPinToPCICR(p)    (((p) >= 0 && (p) <= 21) ? (&PCICR) : ((uint8_t *)0))
+#define digitalPinToPCICRbit(p) (((p) <= 7) ? 2 : (((p) <= 13) ? 0 : 1))
+#define digitalPinToPCMSK(p)    (((p) <= 7) ? (&PCMSK2) : (((p) <= 13) ? (&PCMSK0) : (((p) <= 21) ? (&PCMSK1) : ((uint8_t *)0))))
+#define digitalPinToPCMSKbit(p) (((p) <= 7) ? (p) : (((p) <= 13) ? ((p) - 8) : ((p) - 14)))
+*/
 
 #endif // PLATFORM_TYPES_H

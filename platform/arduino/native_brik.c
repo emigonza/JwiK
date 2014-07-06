@@ -34,17 +34,52 @@
 #include "native_jwik.h"
 #include "native_java.h"
 
-  Pin BrikPins[] = 
+Pin BrikPins[] =
 {
-	// Port 0 pin definitions
-	//
-	// Pin     Func    SFR     Out SFR      Analog SFR  XBR SFR   XBR MSK   SKPI SFR    SKIP MSK	Pin Pos
+		// Port 0 pin definitions
+	    //
+	    // Pin     Func    SFR     Out SFR      Analog SFR  XBR SFR   XBR MSK   SKPI SFR    SKIP MSK   Pin Pos
+	    { ANALOG0, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x01,      0x01 },
+	    { SCK,     SPI,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x02,     SFR_P0SKIP, 0x01,      0x01 },
+	    { ANALOG1, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x02,      0x02 },
+	    { MISO,    SPI,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x02,     SFR_P0SKIP, 0x01,      0x02 },
+	    { ANALOG2, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x04,      0x04 },
+	    { MOSI,    SPI,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x02,     SFR_P0SKIP, 0x01,      0x04 },
+	    { ANALOG3, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x08,      0x08 },
+	    { NSS,     SPI,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x02,     SFR_P0SKIP, 0x01,      0x08 },
+	    { GPIO1,   INPUT,  SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x10,      0x10 },
+	    { TXD,     UART,   SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x01,     SFR_P0SKIP, 0x00,      0x10 },
+	    { GPIO0,   INPUT,  SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x20,      0x20 },
+	    { RXD,     UART,   SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x01,     SFR_P0SKIP, 0x00,      0x20 },
+	    { ANALOG4, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x40,      0x40 },
+	    { SDA,     I2C,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x04,     SFR_P0SKIP, 0x00,      0x40 },
+	    { ANALOG5, ANALOG, SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, 0,        0,        SFR_P0SKIP, 0x80,      0x80 },
+	    { SCL,     I2C,    SFR_P0, SFR_P0MDOUT, SFR_P0MDIN, SFR_XBR0, 0x04,     SFR_P0SKIP, 0x00,      0x80 },
 
-	//Port 1 pin definitions
+	    //Port 1 pin definitions
+	    { GPIO12,  INPUT,  SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, 0,        0,        SFR_P1SKIP, 0x08,      0x08 },
+	    { GPIO3,   INPUT,  SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, 0,        0,        SFR_P1SKIP, 0x20,      0x20 },
+	    { PWM0,    PWM,    SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, SFR_XBR1, 0x01,     SFR_P1SKIP, 0x00,      0x20 },
+	    { GPIO5,   INPUT,  SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, 0,        0,        SFR_P1SKIP, 0x40,      0x20 },
+	    { PWM1,    PWM,    SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, SFR_XBR1, 0x02,     SFR_P1SKIP, 0x00,      0x20 },
+	    { GPIO6,   INPUT,  SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, 0,        0,        SFR_P1SKIP, 0x80,      0x20 },
+	    { PWM2,    PWM,    SFR_P1, SFR_P1MDOUT, SFR_P1MDIN, SFR_XBR1, 0x03,     SFR_P1SKIP, 0x00,      0x20 },
 
-	// Port 2 pin definitions
+	    // Port 2 pin definitions
+	    { GPIO9,   INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x01,      0x01 },
+	    { PWM3,    PWM,    SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, SFR_XBR1, 0x04,     SFR_P2SKIP, 0x00,      0x01 },
+	    { GPIO10,  INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x02,      0x02 },
+	    { PWM4,    PWM,    SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, SFR_XBR1, 0x05,     SFR_P2SKIP, 0x00,      0x02 },
+	    { GPIO11,  INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x04,      0x04 },
+	    { PWM5,    PWM,    SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, SFR_XBR1, 0x06,     SFR_P2SKIP, 0x00,      0x04 },
+	    { GPIO13,  INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x08,      0x08 },
+	    { GPIO2,   INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x10,      0x10 },
+	    { GPIO4,   INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x20,      0x20 },
+	    { GPIO7,   INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x40,      0x40 },
+	    { GPIO8,   INPUT,  SFR_P2, SFR_P2MDOUT, SFR_P2MDIN, 0,        0,        SFR_P2SKIP, 0x80,      0x80 },
 };
-void NativeBrikInvoke(uint8_t mref)
+
+  void NativeBrikInvoke(uint8_t mref)
 {
 	tVmInt op1, op2, op3;
 	
@@ -150,8 +185,6 @@ void NativeBrikInvoke(uint8_t mref)
 			op2 = StackPopInt();
 			// op1 contains pin number
 			op1 = StackPopInt();
-			
-
 			break;
 		case NATIVE_METHOD_READANALOG:
 			break;
