@@ -13,6 +13,6 @@
 #ifndef COMPILER_DEFS_H
 //#include <compiler_defs.h>
 #endif
-#include "uart/uart.h"
+#include "avrlib/uart.h"
 //=============================================================================
 #endif //HARDWARE_DEFS_H

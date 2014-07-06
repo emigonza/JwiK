@@ -35,7 +35,8 @@
 								<option id="de.innot.avreclipse.compiler.option.incpath.179996823" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino/uart}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino/avr-libc/common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/JwiK-VM/platform/arduino/avr-libc}&quot;"/>
 								</option>
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.329704127" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
 							</tool>

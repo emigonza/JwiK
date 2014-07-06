@@ -25,6 +25,7 @@
 
 #include "microapi.h"
 #include <stdint.h>
+#include "spi.h"
 
 // Global Variables
 uint32_t sysclk;
@@ -46,9 +47,10 @@ INTERRUPT( TIMER3_ISR, INTERRUPT_TIMER3 )
 */
 // ***********************************************************************************
 // *** Internal functions ***
-/*
+
 void InitializePorts( void )
 {
+	/*
     uint16_t delay;
 
      Init LPOSC to 10 MHZ clock for now.
@@ -111,21 +113,14 @@ void InitializePorts( void )
 	IT01CF	= 0x07;
 	IE0	= 0;
 	IT0	=0;
-
-}
 */
-/*
+}
+
 void InitializeSPI1( void )
 {
-
-	SPI1CFG = 0x40;
-	SPI1CN = 0x00;
-	SPI1CKR = 0x00; //SPI_CKR_VALUE;
-	SPI1CN |= 0x01;
-	NSS1 = 1;
-
+	spi_init(1);
 }
-*/
+
 /*
 void InitializeTimer3( void )
 
@@ -140,10 +135,10 @@ void InitializeTimer3( void )
 }
 */
 // initialize RTC.  Interrupt every rtc_alarm/32768 seconds.
-/*
+
 void InitializeRTC( uint32_t rtc_alarm )
 {
-
+/*
 	if ( RTC0KEY == 0x00 ) {
 		RTC0KEY = 0xa5;
 		RTC0KEY = 0xf1;
@@ -198,12 +193,12 @@ void InitializeRTC( uint32_t rtc_alarm )
 	rtc.minute = 0;
 	rtc.second = 0;
 	EIE1 |= 0x02;
-
-}
 */
-/*
+}
+
 uint32_t CalculateSystemClock( uint8_t clksource, uint8_t clkdivider, uint8_t bslowtofast )
 {
+/*
 
 	uint32_t clk;
 
@@ -243,20 +238,16 @@ uint32_t CalculateSystemClock( uint8_t clksource, uint8_t clkdivider, uint8_t bs
 	}
 	FLSCL = 0x40;
 	return ( clk );
-}
 */
-/*
+	return 1;
+}
+
+
 void InterruptInit(void)
 {
-
-	IT01CF	= 0x07;								// INT0 mapped to P0.
 	
-    TCON &= ~0x03;                      // clear IE0 & IT0
-	// make int0 edge triggered
-	TCON |=1;
-
 }
-*/
+
 // ***********************************************************************************
 // *** Public API ***
 
@@ -264,92 +255,21 @@ void InitializeMicroAPI(void)
 {
 
 }
-/*
-uint8_t ReadSPI(uint8_t reg) reentrant
+
+uint8_t ReadSPI(uint8_t reg)
 {
-
-	uint8_t value;
-   uint8_t restoreInts;
-
-   // Disable MAC interrupts
-   restoreInts = IE & 0x03;             // save EX0 & ET0 state
-   IE &= ~0x03; 
-
-   // Send SPI data using double buffered write
-   NSS1 = 0;                           // dsrive NSS low
-   SPIF1 = 0;                          // cleat SPIF
-   SPI1DAT = ( reg );                  // write reg address
-   while(!TXBMT1);                     // wait on TXBMT
-   SPI1DAT = 0x00;                     // write anything
-   while(!TXBMT1);                     // wait on TXBMT
-   while((SPI1CFG & 0x80) == 0x80);    // wait on SPIBSY
-   value = SPI1DAT;                    // read value
-   SPIF1 = 0;                          // leave SPIF cleared
-   NSS1 = 1;                           // drive NSS low
-
-   // Restore MAC interrupts
-   IE |= restoreInts;                  // restore EX0 & ET0
+	return spi_read_byte();
+}
 
 
-   return value;
+void WriteSPI(uint8_t reg, uint8_t value)
+{
+	spi_send_byte(value);
 
 }
-*/
-/*
-void WriteSPI(uint8_t reg, uint8_t value) reentrant
+
+void WriteSPIMultiple (uint8_t count, uint8_t reg,  VARIABLE_SEGMENT_POINTER(buffer, uint8_t, SEG_XDATA))
 {
 
-	uint8_t restoreEA;
-
-   // disable interrupts during SPI transfer
-   restoreEA = EA;
-   EA = 0;
-
-   // Send SPI data using double buffered write
-   NSS1 = 0;                           // drive NSS low
-   SPIF1 = 0;                          // clear SPIF
-   SPI1DAT = (reg | 0x80);             // write reg address
-   while(!TXBMT1);                     // wait on TXBMT
-   SPI1DAT = value;                    // write value
-   while(!TXBMT1);                     // wait on TXBMT
-   while((SPI1CFG & 0x80) == 0x80);    // wait on SPIBSY
-
-   SPIF1 = 0;                          // leave SPIF cleared
-   NSS1 = 1;                           // drive NSS high
-
-   // Restore interrupts after SPI transfer
-   EA = restoreEA;
-
 }
-*/
-/*
-void WriteSPIMultiple (uint8_t count, uint8_t reg,  VARIABLE_SEGMENT_POINTER(buffer, uint8_t, SEG_XDATA)) reentrant
-{
 
-	uint8_t restoreEA;
-
-   // disable interrupts during SPI transfer
-   restoreEA = EA;
-   EA = 0;
-
-   NSS1 = 0;                            // drive NSS low
-   SPIF1 = 0;                           // clear SPIF
-   SPI1DAT = (0x80 | reg);
-
-   while(count--)
-   {
-      while(!TXBMT1);                   // wait on TXBMT
-      SPI1DAT = *buffer++;             // write buffer
-   }
-
-   while(!TXBMT1);                      // wait on TXBMT
-   while((SPI1CFG & 0x80) == 0x80);    // wait on SPIBSY
-
-   SPIF1 = 0;                           // leave SPI  cleared
-   NSS1 = 1;                            // drive NSS high
-
-   // Restore interrupts after SPI transfer
-   EA = restoreEA;
-
-}
-*/
